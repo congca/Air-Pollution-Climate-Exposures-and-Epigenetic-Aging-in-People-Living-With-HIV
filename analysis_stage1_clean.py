@@ -1,4 +1,4 @@
-"""Cleaned analysis script converted from Jupyter notebook."""
+
 
 import numpy as np
 import pandas as pd
@@ -227,9 +227,7 @@ kf = KFold(
 
 for outcome in outcomes:
 
-    print("\n================================")
-    print("Outcome:", outcome)
-    print("================================")
+ 
 
     Y = df[outcome].values
 
@@ -874,40 +872,22 @@ doc.save(
     "Manual_DML_Results_Table.docx"
 )
 
-# DONE
+
 
 print("\nWord document generated successfully.")
 
 print("\nSaved file:")
 print("- Manual_DML_Results_Table.docx")
 
----
 
-# Output
+ 
 
-This generates:
+
 
 * `Manual_DML_Results_Table.docx`
 
 with:
 
-* publication-quality formatting
-* landscape layout
-* formatted confidence intervals
-* bold headers
-* readable font sizes
-* manuscript-ready structure
-# DOWHY CAUSAL ANALYSIS
-# Environmental Exposures -> Epigenetic Aging
-#
-# Visit = 4 only
-# Removes HIV proxy variables
-
-# INSTALL (RUN ONCE)
-
-# IMPORT LIBRARIES
-
-# LOAD DATA
 
 df = pd.read_csv("combined.csv")
 
@@ -1053,9 +1033,7 @@ results = []
 
 for outcome in outcomes:
 
-    print("\n================================================")
-    print("Outcome:", outcome)
-    print("================================================")
+ 
 
     for treatment in treatments:
 
@@ -1151,9 +1129,7 @@ results_df.to_csv(
 
 )
 
-print("\n================================================")
-print("FINAL RESULTS")
-print("================================================")
+ 
 
 print(results_df)
 
@@ -1636,10 +1612,7 @@ colors = [
 
 for outcome in outcomes:
 
-    print("\n================================")
-    print("Outcome:", outcome)
-    print("================================")
-
+    
     # FIGURE
 
     fig, axes = plt.subplots(
@@ -2233,9 +2206,7 @@ colors = [
 
 for outcome in outcomes:
 
-    print("\n================================")
-    print("Outcome:", outcome)
-    print("================================")
+ 
 
     # SELECT TOP 4 EXPOSURES
 
@@ -2486,9 +2457,7 @@ for outcome in outcomes:
 
     plt.show()
 
-print("\n================================")
-print("Publication-style figures generated.")
-print("================================")
+ 
 # Deep Learning + Causal Inference
 
 # FIGURE SETUP
