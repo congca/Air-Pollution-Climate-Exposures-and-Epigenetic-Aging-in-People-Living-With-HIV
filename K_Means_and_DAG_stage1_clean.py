@@ -145,12 +145,12 @@ for i, txt in enumerate(df.columns):
     plt.annotate(
         txt,
         (pca_data[i, 0], pca_data[i, 1]),
-        fontsize=24   # ← 改大这里
+        fontsize=24   
     )
 
 plt.title(
     f'K-Means Clustering Results with Two Clusters',
-    fontsize=30      # ← 标题字体也可一起放大
+    fontsize=30       
 )
 
 plt.xlabel(
@@ -224,15 +224,11 @@ for i in range(optimal_n_clusters):
 
 import networkx as nx
 
-# =========================================================
-# DEFINE DAG STRUCTURE
-# =========================================================
+ 
 
 G = nx.DiGraph()
 
-# -------------------------
-# NODE GROUPS
-# -------------------------
+ 
 
 environmental = [
     "Temperature",
@@ -267,9 +263,7 @@ outcomes = [
     "DNAmTLadjAge"
 ]
 
-# =========================================================
-# ADD NODES
-# =========================================================
+ 
 
 for n in environmental:
     G.add_node(n, group="environment")
@@ -282,32 +276,27 @@ for n in covariates:
 
 for n in outcomes:
     G.add_node(n, group="outcome")
-
-# =========================================================
-# ADD EDGES
-# STRICTLY BASED ON YOUR DAG
-# =========================================================
-
-# -------------------------
+ 
+ 
 # Environmental → Immune
-# -------------------------
+ 
 for e in environmental:
     G.add_edge(e, "Inflammation")
     G.add_edge(e, "Immune Senescence")
     G.add_edge(e, "Activated CD8")
     G.add_edge(e, "CD4 Depletion")
 
-# -------------------------
+ 
 # HIV → Immune
-# -------------------------
+ 
 G.add_edge("HIV Status", "Inflammation")
 G.add_edge("HIV Status", "Immune Senescence")
 G.add_edge("HIV Status", "Activated CD8")
 G.add_edge("HIV Status", "CD4 Depletion")
 
-# -------------------------
+ 
 # Immune → Outcomes
-# -------------------------
+ 
 for i in [
     "Inflammation",
     "Immune Senescence",
@@ -317,32 +306,30 @@ for i in [
     for o in outcomes:
         G.add_edge(i, o)
 
-# -------------------------
+ 
 # Environmental → Outcomes
-# -------------------------
+ 
 for e in environmental:
     for o in outcomes:
         G.add_edge(e, o)
 
-# -------------------------
+ 
 # Covariates → Outcomes
-# -------------------------
+ 
 for c in covariates:
     for o in outcomes:
         G.add_edge(c, o)
 
-# -------------------------
+ 
 # Covariates → Immune
-# -------------------------
+ 
 for c in covariates:
     G.add_edge(c, "Inflammation")
     G.add_edge(c, "Immune Senescence")
     G.add_edge(c, "Activated CD8")
     G.add_edge(c, "CD4 Depletion")
 
-# =========================================================
-# NODE POSITIONS
-# =========================================================
+ 
 
 pos = {
     # Environmental
@@ -375,9 +362,9 @@ pos = {
     "DNAmTLadjAge": (14, -1),
 }
 
-# =========================================================
+ 
 # COLORS
-# =========================================================
+ 
 
 node_colors = []
 
@@ -396,9 +383,9 @@ for node in G.nodes():
     elif group == "outcome":
         node_colors.append("#d8a4e3")
 
-# =========================================================
+ 
 # DRAW FIGURE
-# =========================================================
+ 
 
 plt.figure(figsize=(18, 10), facecolor="#f7f7f7")
 ax = plt.gca()
@@ -436,9 +423,9 @@ nx.draw_networkx_labels(
     font_family="sans-serif"
 )
 
-# =========================================================
+ 
 # LEGEND
-# =========================================================
+ 
 
 from matplotlib.patches import Patch
 
@@ -456,11 +443,9 @@ plt.legend(
     frameon=True
 )
 
-# =========================================================
+ 
 # TITLE
-# =========================================================
-
-plt.title(
+ plt.title(
     "Directed Acyclic Graph (DAG): Environmental Exposures, Immune Dysregulation, and Epigenetic Aging",
     fontsize=18,
     fontweight="bold",
@@ -470,9 +455,7 @@ plt.title(
 plt.axis("off")
 plt.tight_layout()
 
-# =========================================================
-# SAVE
-# =========================================================
+ 
 
 plt.savefig(
     "publication_style_dag.png",
@@ -518,10 +501,7 @@ outcomes = [
     "DNAmTLadjAge"
 ]
 
-# =========================================================
-# ADD NODES
-# =========================================================
-
+ 
 for n in environmental:
     G.add_node(n, group="environment")
 
@@ -534,31 +514,21 @@ for n in covariates:
 for n in outcomes:
     G.add_node(n, group="outcome")
 
-# =========================================================
-# ADD EDGES
-# STRICTLY BASED ON YOUR DAG
-# =========================================================
+ 
 
-# -------------------------
-# Environmental → Immune
-# -------------------------
+ 
 for e in environmental:
     G.add_edge(e, "Inflammation")
     G.add_edge(e, "Immune Senescence")
     G.add_edge(e, "Activated CD8")
     G.add_edge(e, "CD4 Depletion")
 
-# -------------------------
-# HIV → Immune
-# -------------------------
+ 
 G.add_edge("HIV Status", "Inflammation")
 G.add_edge("HIV Status", "Immune Senescence")
 G.add_edge("HIV Status", "Activated CD8")
 G.add_edge("HIV Status", "CD4 Depletion")
-
-# -------------------------
-# Immune → Outcomes
-# -------------------------
+ 
 for i in [
     "Inflammation",
     "Immune Senescence",
@@ -568,32 +538,24 @@ for i in [
     for o in outcomes:
         G.add_edge(i, o)
 
-# -------------------------
-# Environmental → Outcomes
-# -------------------------
+ 
 for e in environmental:
     for o in outcomes:
         G.add_edge(e, o)
 
-# -------------------------
-# Covariates → Outcomes
-# -------------------------
+ 
 for c in covariates:
     for o in outcomes:
         G.add_edge(c, o)
 
-# -------------------------
-# Covariates → Immune
-# -------------------------
+ 
 for c in covariates:
     G.add_edge(c, "Inflammation")
     G.add_edge(c, "Immune Senescence")
     G.add_edge(c, "Activated CD8")
     G.add_edge(c, "CD4 Depletion")
 
-# =========================================================
-# NODE POSITIONS
-# =========================================================
+ 
 
 pos = {
     # Environmental
@@ -625,10 +587,7 @@ pos = {
     "GEAA": (14, 0.8),
     "DNAmTLadjAge": (14, -1),
 }
-
-# =========================================================
-# COLORS
-# =========================================================
+ 
 
 node_colors = []
 
@@ -646,10 +605,7 @@ for node in G.nodes():
 
     elif group == "outcome":
         node_colors.append("#d8a4e3")
-
-# =========================================================
-# DRAW FIGURE
-# =========================================================
+ 
 
 plt.figure(figsize=(18, 10), facecolor="#f7f7f7")
 ax = plt.gca()
@@ -687,9 +643,7 @@ nx.draw_networkx_labels(
     font_family="sans-serif"
 )
 
-# =========================================================
-# LEGEND
-# =========================================================
+ 
 
 legend_elements = [
     Patch(facecolor="#8ecae6", edgecolor="black", label="Environmental Exposures"),
@@ -704,10 +658,7 @@ plt.legend(
     fontsize=11,
     frameon=True
 )
-
-# =========================================================
-# TITLE
-# =========================================================
+ 
 
 plt.title(
     "Directed Acyclic Graph (DAG): Environmental Exposures, Immune Dysregulation, and Epigenetic Aging",
@@ -719,9 +670,7 @@ plt.title(
 plt.axis("off")
 plt.tight_layout()
 
-# =========================================================
-# SAVE
-# =========================================================
+ 
 
 plt.savefig(
     "publication_style_dag.png",
@@ -843,9 +792,7 @@ fig, ax = plt.subplots(figsize=(16, 8))
 ax.set_xlim(0, 16)
 ax.set_ylim(0, 10)
 
-# ----------------------------
-# BOX FUNCTION
-# ----------------------------
+ 
 
 def add_box(x, y, text, color):
     box = FancyBboxPatch(
@@ -888,11 +835,9 @@ add_box(11, 6.8, "EEAA", "#D7BDE2")
 add_box(11, 5.6, "PEAA", "#D7BDE2")
 add_box(11, 4.4, "GEAA", "#D7BDE2")
 add_box(11, 3.2, "DNAmTLadjAge", "#D7BDE2")
-
-# ----------------------------
+ 
 # ARROWS
-# ----------------------------
-
+ 
 arrowprops = dict(arrowstyle="->", lw=1.5, color="black")
 
 # Environment to immune
@@ -963,10 +908,7 @@ plt.title(
 plt.axis('off')
 plt.tight_layout()
 plt.show()
-
-# =========================================================
-# STYLE
-# =========================================================
+ 
 
 plt.rcParams.update({
     "font.family": "sans-serif",
@@ -974,9 +916,7 @@ plt.rcParams.update({
     "axes.linewidth": 1.2
 })
 
-# =========================================================
-# GRAPH
-# =========================================================
+ 
 
 G = nx.DiGraph()
 
@@ -1012,9 +952,7 @@ outcomes = [
     "DNAmTLadjAge"
 ]
 
-# =========================================================
-# EDGES
-# =========================================================
+ 
 
 for e in environmental:
     G.add_edge(e, "Inflammation")
@@ -1032,10 +970,7 @@ for i in immune:
 for c in covariates:
     for o in outcomes:
         G.add_edge(c, o)
-
-# =========================================================
-# POSITIONS
-# =========================================================
+ 
 
 pos = {
 
@@ -1071,10 +1006,7 @@ pos = {
     "DNAmTLadjAge": (13.5, 1.7)
 }
 
-# =========================================================
-# COLORS
-# =========================================================
-
+ 
 colors = {}
 
 for n in environmental:
@@ -1091,18 +1023,15 @@ for n in covariates:
 for n in outcomes:
     colors[n] = "#B279A2"
 
-# =========================================================
-# DRAW
-# =========================================================
+ 
 
 fig, ax = plt.subplots(figsize=(18, 10))
 
 fig.patch.set_facecolor("white")
 ax.set_facecolor("white")
 
-# -------------------------
-# EDGES
-# -------------------------
+ 
+# EDGES 
 
 nx.draw_networkx_edges(
     G,
@@ -1116,9 +1045,9 @@ nx.draw_networkx_edges(
     connectionstyle="arc3,rad=0.08"
 )
 
-# -------------------------
+ 
 # NODES
-# -------------------------
+ 
 
 for node, (x, y) in pos.items():
 
@@ -1152,9 +1081,8 @@ for node, (x, y) in pos.items():
         color="white"
     )
 
-# =========================================================
-# SECTION LABELS
-# =========================================================
+ 
+ 
 
 ax.text(
     -0.5,
@@ -1190,9 +1118,8 @@ ax.text(
     ha="center"
 )
 
-# =========================================================
-# TITLE
-# =========================================================
+ 
+ 
 
 plt.title(
     "Conceptual DAG Linking Environmental Exposures, HIV, and Epigenetic Aging",
@@ -1201,9 +1128,7 @@ plt.title(
     pad=28
 )
 
-# =========================================================
-# FINALIZE
-# =========================================================
+ 
 
 plt.xlim(-1.5, 16)
 plt.ylim(-3, 11)
